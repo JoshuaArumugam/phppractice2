@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.flexrow {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+.flexrow div {
+    display: flex;
+    align-items: center;
+}
+.flexrow h4 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+.well, .well-lg {
+    margin: 0px;
+    height: 100%;
+}
+
+.col-sm-12 {
+    padding: 0px;
+}
+
+.row {
+    margin-right: 0px;
+}
