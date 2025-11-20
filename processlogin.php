@@ -11,10 +11,10 @@
     $stmt1->execute();
     while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
         if ($row["Password"] === $_POST["password"]) {
-            $_SESSION["msg"] = "Logged in";
+            $_SESSION["msg"] = 1;
         }
         else {
-            $_SESSION["msg"] = "Incorrect password";
+            $_SESSION["msg"] = 0;
         }
     }
 ?>
