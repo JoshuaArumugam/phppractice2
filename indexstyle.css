@@ -24,7 +24,6 @@ html, body {
 
 .well, .well-lg {
     margin: 0px;
-    height: 100%;
 }
 
 .col-sm-12 {
@@ -33,4 +32,12 @@ html, body {
 
 .row {
     margin-right: 0px;
+}
+
+.centerdiv {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
