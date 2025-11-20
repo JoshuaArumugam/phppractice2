@@ -1,8 +1,8 @@
 <?php
-    //header("Location: login.php");
-    print_r($_POST);
+    header("Location: login.php");
     array_map("htmlspecialchars", $_POST);
     include_once("connection.php");
+    session_start();
 
     $stmt1 = $conn->prepare("
     SELECT * FROM users WHERE Username=:Username;
@@ -10,8 +10,11 @@
     $stmt1->bindParam(":Username", $_POST["username"]);
     $stmt1->execute();
     while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
-        echo($row["Username"]." ".$row["Password"]."<br>");
+        if ($row["Password"] === $_POST["password"]) {
+            $_SESSION["msg"] = "Logged in";
+        }
+        else {
+            $_SESSION["msg"] = "Incorrect password";
+        }
     }
-
-    
 ?>

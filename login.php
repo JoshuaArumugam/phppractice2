@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,23 +11,39 @@
         <link rel="stylesheet" href="indexstyle.css">
     </head>
     <body>
-        <div class="row" style="margin: 0px;">
-            <div class="well well-lg" style="margin: 0px;">
-                <h3><strong>Login</strong></h3>
-                <form action="processlogin.php" method="post">
-                    <div class="form-group">
-                        <label for="username">Username: </label>
-                        <input type="text" class="form-control" id="username" name="username">
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password: </label>
-                        <input type="password" class="form-control" id="password" name="password">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-default">Login</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <?php
+            if (!isset($_SESSION["msg"])) {
+                echo('<div class="row" style="margin: 0px;">
+                <div class="well well-lg" style="margin: 0px;">
+                    <h3><strong>Login</strong></h3>
+                    <form action="processlogin.php" method="post">
+                        <div class="form-group">
+                            <label for="username">Username: </label>
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password: </label>
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">Login</button>
+                        </div>
+                    </form>
+                </div>
+                </div>');
+            }
+        ?>
+        <?php
+            if (isset($_SESSION["msg"])) {
+                if ($_SESSION["msg"] == "Logged in") {
+                    echo("<div class='alert alert-success'><strong>".$_SESSION["msg"]."</strong></div>");
+                    unset($_SESSION["msg"]);
+                }
+                else {
+                    echo("<div class='alert alert-danger'><strong>".$_SESSION["msg"]."</strong></div>");
+                    unset($_SESSION["msg"]);
+                }
+            }
+        ?>
     </body>
 </html>
