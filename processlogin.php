@@ -1,5 +1,4 @@
 <?php
-    header("Location: login.php");
     array_map("htmlspecialchars", $_POST);
     include_once("connection.php");
     session_start();
@@ -11,10 +10,12 @@
     $stmt1->execute();
     while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
         if ($row["Password"] === $_POST["password"]) {
-            $_SESSION["msg"] = 1;
+            $_SESSION["loginStatus"] = 1;
+            header("Location: index.php");
         }
         else {
-            $_SESSION["msg"] = 0;
+            $_SESSION["loginStatus"] = 0;
+            header("Location: login.php");
         }
     }
 ?>

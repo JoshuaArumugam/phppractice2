@@ -35,6 +35,9 @@
                                     <input type="password" class="form-control" id="password" name="password">
                                 </div>
                                 <div class="form-group">
+                                    <label style="align-items: center; display: flex;"><input type="checkbox" value="" style="margin-top: 0; margin-right: 5px;" id="showpassword">Show password</label>
+                                </div>
+                                <div class="form-group">
                                     <button type="submit" class="btn btn-default">Login</button>
                                 </div>
                             </form>
@@ -46,15 +49,27 @@
             </div>
         </div>
         <?php
-            if (isset($_SESSION["msg"])) {
-                if ($_SESSION["msg"] == 1) {
-                    unset($_SESSION["msg"]);
+            if (isset($_SESSION["loginStatus"])) {
+                if ($_SESSION["loginStatus"] == 1) {
+                    unset($_SESSION["loginStatus"]);
                 }
                 else {
                     echo("<script>$('#incorrect').removeClass('collapse');</script>");
-                    unset($_SESSION["msg"]);
+                    unset($_SESSION["loginStatus"]);
                 }
             }
         ?>
     </body>
+    <script>
+        $(document).ready(function(){
+            $("#showpassword").click(function(){
+                if ($("#showpassword").prop("checked")) {
+                    $("#password").attr("type", "text");
+                }
+                else {
+                    $("#password").attr("type", "password");
+                }
+            })
+        })
+    </script>
 </html>

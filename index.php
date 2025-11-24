@@ -93,9 +93,9 @@
             </div>
             <div class="row">
                 <div class="well well-lg flexrow" style="padding: 0;">
-                    <div style="display: flex; flex-direction: column; width: 50%;">
+                    <div style="display: flex; flex-direction: column; padding: 0px; width: 50%;">
                         <h3>Current users</h3>
-                        <table class="table table-striped">
+                        <table class="table table-striped" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>UserID</th>
@@ -123,9 +123,9 @@
                             </tbody>
                         </table>
                     </div>
-                    <div style="display: flex; flex-direction: column; width: 50%;">
+                    <div style="display: flex; flex-direction: column; padding: 0px; width: 50%; top: 0; height: 150.4px;">
                         <h3>Current foods</h3>
-                        <table class="table table-striped">
+                        <table class="table table-striped" style="width: 100%;">
                             <thead>
                                 <tr>
                                     <th>FoodID</th>
