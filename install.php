@@ -19,6 +19,18 @@
     Role TINYINT(1));
     ");
     $stmt1->execute();
+
+    $hashedpassword = password_hash("password", PASSWORD_DEFAULT);
+    echo($hashedpassword);
+    $stmt1 = $conn->prepare("
+    INSERT INTO users
+    (UserID, Username, Surname, Forename, Password, Year, Balance, Role)
+    VALUES
+    (NULL, 'KirkC', 'Kirk', 'Charlie', :Password, 12, 67, 1),
+    (NULL, 'ClintonB', 'Clinton', 'Bill', :Password, 12, 100, 0)
+    ");
+    $stmt1->bindParam(":Password", $hashedpassword);
+    $stmt1->execute();
     
     $stmt1 = $conn->prepare("DROP TABLE IF EXISTS food;
     CREATE TABLE food

@@ -50,12 +50,9 @@
         </div>
         <?php
             if (isset($_SESSION["loginStatus"])) {
-                if ($_SESSION["loginStatus"] == 1) {
-                    unset($_SESSION["loginStatus"]);
-                }
-                else {
+                if (!$_SESSION["loginStatus"]) {
                     echo("<script>$('#incorrect').removeClass('collapse');</script>");
-                    unset($_SESSION["loginStatus"]);
+                    session_destroy();
                 }
             }
         ?>

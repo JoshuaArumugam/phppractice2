@@ -9,12 +9,20 @@
     $stmt1->bindParam(":Username", $_POST["username"]);
     $stmt1->execute();
     while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
-        if ($row["Password"] === $_POST["password"]) {
-            $_SESSION["loginStatus"] = 1;
+        $hashed = $row["Password"];
+        $attempt = $_POST["password"];
+        if (password_verify($attempt, $hashed)) {
+            $_SESSION["forename"] = $row["Forename"];
+            $_SESSION["surname"] = $row["Surname"];
+            $_SESSION["loggedinid"] = $row["UserID"];
+            $_SESSION["role"] = $row["Role"];
+            $_SESSION["loginStatus"] = true;
+            echo($_SESSION["loginStatus"]);
             header("Location: index.php");
         }
         else {
-            $_SESSION["loginStatus"] = 0;
+            $_SESSION["loginStatus"] = false;
+            echo($_SESSION["loginStatus"]);
             header("Location: login.php");
         }
     }
