@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    if (!isset($_SESSION["loginStatus"])) {
+        header("Location: index.php");
+    }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -92,64 +98,68 @@
                 </div>
             </div>
             <div class="row">
-                <div class="well well-lg flexrow" style="padding: 0;">
-                    <div style="display: flex; flex-direction: column; padding: 0px; width: 50%;">
+                <div class="well well-lg" style="padding: 0;">
+                    <div class="flexrow" style="justify-content: center;">
                         <h3>Current users</h3>
-                        <table class="table table-striped" style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th>UserID</th>
-                                    <th>Username</th>
-                                    <th>Forename</th>
-                                    <th>Surname</th>
-                                    <th>Password</th>
-                                    <th>Year</th>
-                                    <th>Balance</th>
-                                    <th>Role</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    include_once("connection.php");
-                                    $stmt1 = $conn->prepare("
-                                    SELECT * FROM users
-                                    ");
-                                    $stmt1->execute();
-
-                                    while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
-                                        echo("<tr><td>".$row["UserID"]."</td><td>".$row["Username"]."</td><td>".$row["Forename"]."</td><td>".$row["Surname"]."</td><td>".$row["Password"]."</td><td>".$row["Year"]."</td><td>".$row["Balance"]."</td><td>".$row["Role"]."</td><td></tr>");
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
                     </div>
-                    <div style="display: flex; flex-direction: column; padding: 0px; width: 50%; top: 0; height: 150.4px;">
+                    <table class="table table-striped" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>UserID</th>
+                                <th>Username</th>
+                                <th>Forename</th>
+                                <th>Surname</th>
+                                <th>Password</th>
+                                <th>Year</th>
+                                <th>Balance</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                include_once("connection.php");
+                                $stmt1 = $conn->prepare("
+                                SELECT * FROM users
+                                ");
+                                $stmt1->execute();
+
+                                while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+                                    echo("<tr><td>".$row["UserID"]."</td><td>".$row["Username"]."</td><td>".$row["Forename"]."</td><td>".$row["Surname"]."</td><td>".$row["Password"]."</td><td>".$row["Year"]."</td><td>".$row["Balance"]."</td><td>".$row["Role"]."</td><td></tr>");
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="well well-lg" style="padding: 0px;">
+                    <div class="flexrow" style="justify-content: center;">
                         <h3>Current foods</h3>
-                        <table class="table table-striped" style="width: 100%;">
-                            <thead>
-                                <tr>
-                                    <th>FoodID</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
-                                    <th>Category</th>
-                                    <th>Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                    include_once("connection.php");
-                                    $stmt1 = $conn->prepare("
-                                    SELECT * FROM food
-                                    ");
-                                    $stmt1->execute();
-
-                                    while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
-                                        echo("<tr><td>".$row["FoodID"]."</td><td>".$row["Name"]."</td><td>".$row["Description"]."</td><td>".$row["Category"]."</td><td>".$row["Price"]."</td><td></tr>");
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
                     </div>
+                    <table class="table table-striped" style="width: 100%;">
+                        <thead>
+                            <tr>
+                                <th>FoodID</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                                include_once("connection.php");
+                                $stmt1 = $conn->prepare("
+                                SELECT * FROM food
+                                ");
+                                $stmt1->execute();
+
+                                while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+                                    echo("<tr><td>".$row["FoodID"]."</td><td>".$row["Name"]."</td><td>".$row["Description"]."</td><td>".$row["Category"]."</td><td>".$row["Price"]."</td><td></tr>");
+                                }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

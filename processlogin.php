@@ -17,6 +17,7 @@
             $_SESSION["loggedinid"] = $row["UserID"];
             $_SESSION["role"] = $row["Role"];
             $_SESSION["loginStatus"] = true;
+            $_SESSION["balance"] = $row["Balance"];
             echo($_SESSION["loginStatus"]);
             header("Location: index.php");
         }
